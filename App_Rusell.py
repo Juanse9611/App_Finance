@@ -10,10 +10,10 @@ st.title("Análisis Financiero del Russell 1000")
 def cargar_datos():
     # Aquí deberías usar el DataFrame final que generaste en el notebook
     try:
-        df = pd.read_csv("russell1000_final.csv")
+        df = pd.read_csv("Russell_1000_Valoraciones.csv")
         return df
     except FileNotFoundError:
-        st.error("No se encontró el archivo de datos. Asegúrate de tener 'russell1000_final.csv' en el mismo directorio.")
+        st.error("No se encontró el archivo de datos. Asegúrate de tener 'Russell_1000_Valoraciones.csv' en el mismo directorio.")
         return pd.DataFrame()
 
 # Cargar DataFrame
