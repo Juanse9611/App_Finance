@@ -9,7 +9,7 @@ st.title("Análisis de Valoraciones - Russell 1000")
 @st.cache_data
 def cargar_datos():
     try:
-        df = pd.read_csv("Russell_1000_Valoraciones.csv", sep=';')
+        df = pd.read_csv("Russell_1000_Valoraciones.csv", sep=';', decimal=',')
         st.write("Archivo cargado correctamente")  # Mensaje para confirmar carga
 
         st.write("Columnas originales:", df.columns.tolist())
