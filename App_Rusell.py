@@ -17,6 +17,9 @@ def cargar_datos():
         return pd.DataFrame()
 
 df = cargar_datos()
+# Verifica nombres de columnas y muestra las primeras filas
+st.write("Columnas del archivo:", df.columns.tolist())
+st.dataframe(df.head())
 
 if not df.empty:
     st.sidebar.header("Filtros")
