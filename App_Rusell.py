@@ -20,13 +20,13 @@ df = cargar_datos()
 if not df.empty:
     st.sidebar.header("Filtros")
 
-    empresas = st.sidebar.multiselect(
-        "Selecciona empresas",
-        options=df['empresa'].unique(),
-        default=df['empresa'].unique()
+    Empresas = st.sidebar.multiselect(
+        "Selecciona Empresas",
+        options=df['Empresa'].unique(),
+        default=df['Empresa'].unique()
     )
 
-    df_filtrado = df[df['empresa'].isin(empresas)]
+    df_filtrado = df[df['Empresa'].isin(Empresas)]
 
     st.subheader("📊 Tabla de Valoraciones")
     st.dataframe(df_filtrado)
@@ -34,9 +34,9 @@ if not df.empty:
     st.subheader("📈 PER Promedio por Empresa")
     fig1 = px.bar(
         df_filtrado,
-        x="empresa",
+        x="Empresa",
         y="PER Promedio",
-        color="empresa",
+        color="Empresa",
         title="PER Promedio por Empresa"
     )
     st.plotly_chart(fig1, use_container_width=True)
@@ -44,7 +44,7 @@ if not df.empty:
     st.subheader("📉 Comparación Precio Actual vs Objetivo")
     fig2 = px.bar(
         df_filtrado,
-        x="empresa",
+        x="Empresa",
         y=["Precio Actual", "Precio Objetivo"],
         barmode="group",
         title="Precio Actual vs Objetivo"
