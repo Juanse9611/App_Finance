@@ -10,12 +10,17 @@ st.title("Análisis de Valoraciones - Russell 1000")
 def cargar_datos():
     try:
         df = pd.read_csv("Russell_1000_Valoraciones.csv", sep=';')
-        df.columns = df.columns.str.strip()  # ✅ Limpia espacios en nombres de columna
+        df.columns = df.columns.str.strip()
+
+        # Reemplaza coma por punto y convierte a numérico
+        columnas_numericas = ["Precio Actual", "Precio Objetivo", "PER Promedio", "EPS Promedio", "diff"]
+        for col in columnas_numericas:
+            df[col] = df[col].astype(str).str.replace(',', '.').astype(float)
+
         return df
     except FileNotFoundError:
-        st.error("No se encontró el archivo. Asegúrate de tener 'Russell_1000_Valoraciones.csv' en el mismo directorio.")
+        st.error("No se encontró el archivo.")
         return pd.DataFrame()
-
 df = cargar_datos()
 
 if not df.empty:
