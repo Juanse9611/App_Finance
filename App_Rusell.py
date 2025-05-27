@@ -9,10 +9,10 @@ st.title("Análisis de Valoraciones - Russell 1000")
 @st.cache_data
 def cargar_datos():
     try:
-        df = pd.read_excel("Russell_1000_Valoraciones.xlsx")
+        df = pd.read_excel("Russell_1000_Valoraciones.csv")
         return df
     except FileNotFoundError:
-        st.error("No se encontró el archivo. Asegúrate de tener 'Russell_1000_Valoraciones.xlsx' en el mismo directorio.")
+        st.error("No se encontró el archivo. Asegúrate de tener 'Russell_1000_Valoraciones.csv' en el mismo directorio.")
         return pd.DataFrame()
 
 df = cargar_datos()
