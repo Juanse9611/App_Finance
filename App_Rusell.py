@@ -10,6 +10,7 @@ st.title("Análisis de Valoraciones - Russell 1000")
 def cargar_datos():
     try:
         df = pd.read_csv("Russell_1000_Valoraciones.csv")
+        df.columns = df.columns.str.strip()  # ✅ Limpia espacios en nombres de columna
         return df
     except FileNotFoundError:
         st.error("No se encontró el archivo. Asegúrate de tener 'Russell_1000_Valoraciones.csv' en el mismo directorio.")
@@ -20,13 +21,16 @@ df = cargar_datos()
 if not df.empty:
     st.sidebar.header("Filtros")
 
-    Empresas = st.sidebar.multiselect(
-        "Selecciona Empresas",
-        options=df['Empresa'].unique(),
+    # Mostrar nombres de columnas para depurar
+    # st.write("Columnas disponibles:", df.columns.tolist())
+
+    empresas = st.sidebar.multiselect(
+        "Selecciona empresas",
+        options=df['Empresa'].unique(),  # ✅ Usa el nombre correcto, respetando mayúsculas
         default=df['Empresa'].unique()
     )
 
-    df_filtrado = df[df['Empresa'].isin(Empresas)]
+    df_filtrado = df[df['Empresa'].isin(empresas)]
 
     st.subheader("📊 Tabla de Valoraciones")
     st.dataframe(df_filtrado)
