@@ -9,7 +9,7 @@ st.title("Análisis de Valoraciones - Russell 1000")
 @st.cache_data
 def cargar_datos():
     try:
-        df = pd.read_csv("Russell_1000_Valoraciones.csv")
+        df = pd.read_csv("Russell_1000_Valoraciones.csv", sep=';')
         df.columns = df.columns.str.strip()  # ✅ Limpia espacios en nombres de columna
         return df
     except FileNotFoundError:
